@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    working_dir: /sehouli/app
+    volumes:
+      - ./src:/sehouli/app
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./src:/sehouli/app
+      - ./nginx:/etc/nginx/conf.d
